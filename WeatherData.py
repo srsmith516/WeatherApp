@@ -9,19 +9,15 @@ def k_to_f(kelvin):
         return celsius, fahrenheit
 
 def get_coor(arg):
-    match arg:
-        case 0:
+    if(arg == "Home"):
             return 33.97, -117.32
-        case default:
+    else:
             return 0.00, 0.00
 
-#Get Locaiton By Coordinate
-val = int(input("Where Are you?\n(0)Home\n(1)Other\n"))
-lat, lon = get_coor(val)
 
-url = "https://api.openweathermap.org/data/2.5/weather?lat="+str(lat)+"&lon="+str(lon)+"&appid=" + API_KEY
-
-def get_weather_data():
+def get_weather_data(Location):
+    lat, lon = get_coor(Location)
+    url = "https://api.openweathermap.org/data/2.5/weather?lat="+str(lat)+"&lon="+str(lon)+"&appid=" + API_KEY
     response = requests.get(url).json()
     temp_kelvin = response['main']['temp']
     temp_celsius, temp_fahrenheit = k_to_f(temp_kelvin)

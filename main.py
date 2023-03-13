@@ -26,7 +26,10 @@ while True:
         break
  
     if event == 'submit':
-        temp_celsius, temp_fahrenheit, feels_like_celsius, feels_like_fahrenheit, humidity, wind_speed, sunrise_time, sunset_time = WeatherData.get_weather_data()
+        #Get Locaiton
+        Location = values['-INPUT-']
+        #Get Weather by Location
+        temp_celsius, temp_fahrenheit, feels_like_celsius, feels_like_fahrenheit, humidity, wind_speed, sunrise_time, sunset_time = WeatherData.get_weather_data(Location)
  
         window['-LOCATION-'].update("Home", visible = True)
         window['-TEMP-'].update(f'{temp_fahrenheit} \u2103 ({wind_speed})', visible = True)
